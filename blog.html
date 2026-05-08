@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Consejos de Limpieza para el Hogar | Ziroba México</title>
+  <meta name="description" content="Consejos, trucos y guías de limpieza del hogar. Aprende cómo limpiar parrillas, ollas, sartenes y más con las fibras Ziroba. Tips para una cocina impecable.">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .blog-hero {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, var(--teal-light) 100%);
+      padding: 72px 0 60px;
+    }
+    .blog-hero h1 { color: white; margin-bottom: 12px; }
+    .blog-hero p { color: rgba(255,255,255,.85); font-size: 1.1rem; max-width: 540px; }
+
+    /* Filtros de categoría */
+    .category-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 24px;
+      font-size: .875rem;
+      font-weight: 600;
+      border: 1.5px solid var(--gray-light);
+      color: var(--gray);
+      background: white;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
+    }
+
+    /* Artículo destacado */
+    .article-featured {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 64px;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .article-featured:hover { box-shadow: 0 12px 48px rgba(0,0,0,.15); transform: translateY(-4px); }
+    .article-featured__img {
+      background: linear-gradient(135deg, var(--teal-pale), #B2EBF2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      min-height: 360px;
+    }
+    .article-featured__body {
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .article-featured__meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .article-featured__title {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .article-featured__excerpt {
+      color: var(--gray);
+      font-size: .95rem;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    /* Grid de artículos */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .article-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .article-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .article-card__img {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      flex-shrink: 0;
+    }
+    .article-card__body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .article-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .article-card__date {
+      font-size: .78rem;
+      color: var(--gray);
+    }
+    .article-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .article-card__excerpt {
+      font-size: .875rem;
+      color: var(--gray);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .article-card__read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--teal);
+      font-weight: 600;
+      font-size: .875rem;
+      transition: gap var(--transition);
+      margin-top: auto;
+    }
+    .article-card__read:hover { gap: 10px; }
+
+    /* Paginación */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 64px;
+    }
+    .page-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .875rem;
+      font-weight: 600;
+      border: 1.5px solid var(--gray-light);
+      color: var(--gray);
+      background: white;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .page-btn:hover, .page-btn.active {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
+    }
+    .page-btn--prev, .page-btn--next { width: auto; padding: 0 16px; gap: 6px; }
+
+    /* Newsletter lateral */
+    .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; }
+    .sidebar { position: sticky; top: 100px; }
+    .sidebar-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+    .sidebar-card__title { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .sidebar-tag {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: .8rem;
+      font-weight: 600;
+      background: var(--gray-light);
+      color: var(--gray);
+      margin: 4px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .sidebar-tag:hover { background: var(--teal); color: white; }
+
+    @media (max-width: 1024px) {
+      .blog-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .articles-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .article-featured { grid-template-columns: 1fr; }
+      .article-featured__img { min-height: 200px; }
+      .article-featured__body { padding: 28px 24px; }
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- UTILITY BAR -->
+  <div class="utility-bar">
+    <div class="container">
+      <div class="utility-bar__inner">
+        <div class="utility-bar__contact">
+          <a href="tel:+525543427293" class="utility-bar__item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12.5 19.79 19.79 0 01.12 4 2 2 0 012.1 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.17 6.17l1.08-1.34a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            800 19 ZIROBA
+          </a>
+          <a href="https://wa.me/525543427293?text=Hola%2C+me+interesa+conocer+los+productos+Ziroba." target="_blank" rel="noopener" class="utility-bar__item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967c-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escríbenos ahora
+          </a>
+        </div>
+        <div class="utility-bar__socials">
+          <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo">
+          <img src="imagenes/zirobalogo.png" alt="Ziroba México" style="height:44px;width:auto;object-fit:contain;">
+        </a>
+        <div class="navbar__nav">
+          <a href="index.html" class="navbar__link">Inicio</a>
+          <div class="navbar__dropdown">
+            <a href="productos.html" class="navbar__link navbar__dropdown-toggle">
+              Productos
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="navbar__dropdown-menu">
+              <a href="productos.html#fibras" class="navbar__dropdown-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                Fibras de Acero Inoxidable
+              </a>
+              <a href="productos.html#cotonetes" class="navbar__dropdown-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                Cotonetes de Bambú
+              </a>
+              <a href="productos.html#toallas" class="navbar__dropdown-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+                Toalla Exfoliante
+              </a>
+            </div>
+          </div>
+          <a href="distribuidores.html" class="navbar__link">Distribuidores</a>
+          <a href="nosotros.html" class="navbar__link">Nosotros</a>
+          <!--  <a href="donde-comprar.html" class="navbar__link">Dónde Comprar</a> -->
+          <a href="blog.html" class="navbar__link active">Blog</a>
+          <a href="contacto.html" class="navbar__link">Contacto</a>
+        </div>
+        <a href="catalogo.html" class="btn btn--primary navbar__cta">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Catálogo
+        </a>
+        <button class="navbar__hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="navbar__mobile">
+    <a href="index.html" class="navbar__mobile-link">Inicio</a>
+    <a href="productos.html" class="navbar__mobile-link">Productos</a>
+    <a href="distribuidores.html" class="navbar__mobile-link">Distribuidores</a>
+    <a href="nosotros.html" class="navbar__mobile-link">Nosotros</a>
+   <!-- <a href="donde-comprar.html" class="navbar__mobile-link">Dónde Comprar</a> -->
+    <a href="blog.html" class="navbar__mobile-link">Blog</a>
+    <a href="contacto.html" class="navbar__mobile-link">Contacto</a>
+    <div class="navbar__mobile-ctas">
+      <a href="catalogo.html" class="btn btn--primary" style="justify-content:center;">Descargar Catálogo</a>
+    </div>
+  </div>
+
+   HERO -->
+  <section class="blog-hero">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="index.html">Inicio</a>
+        <span class="breadcrumb__sep">/</span>
+        <span>Blog</span>
+      </nav>
+      <h1>Consejos para una cocina impecable</h1>
+      <p>Trucos, guías y tips de limpieza del hogar escritos por expertos. Porque una cocina limpia no es suerte — es saber cómo hacerlo.</p>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <section class="section">
+    <div class="container">
+      <div class="blog-layout">
+
+        <!-- COLUMNA PRINCIPAL -->
+        <div>
+
+          <!-- ARTÍCULO DESTACADO -->
+          <div style="margin-bottom:16px;">
+            <span class="section-label">Artículo destacado</span>
+          </div>
+          <a href="#" class="article-featured reveal" style="display:grid;text-decoration:none;">
+            <div class="article-featured__img">🍳</div>
+            <div class="article-featured__body">
+              <div class="article-featured__meta">
+                <span class="badge badge--teal">Limpieza</span>
+                <span class="article-card__date">15 de enero, 2025</span>
+                <span style="font-size:.78rem;color:var(--gray);">· 5 min de lectura</span>
+              </div>
+              <h2 class="article-featured__title">Cómo quitar grasa pegada de una olla exprés sin dañarla</h2>
+              <p class="article-featured__excerpt">La olla exprés es uno de los utensilios más usados en la cocina mexicana, pero también uno de los más difíciles de limpiar cuando la grasa se pega. Te enseñamos el truco infalible que usan las amas de casa expertas para dejarla como nueva en minutos.</p>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span class="article-card__read">
+                  Leer artículo completo
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <!-- FILTROS DE CATEGORÍA -->
+          <div style="margin: 48px 0 32px;">
+            <h3 style="margin-bottom:16px;font-size:1rem;">Filtrar por categoría</h3>
+            <div class="category-filters">
+              <button class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
+              <button class="filter-btn" onclick="filtrarCategoria('limpieza', this)">🧹 Limpieza del hogar</button>
+              <button class="filter-btn" onclick="filtrarCategoria('cocina', this)">🍳 Cocina</button>
+              <button class="filter-btn" onclick="filtrarCategoria('sustentabilidad', this)">🌿 Sustentabilidad</button>
+              <button class="filter-btn" onclick="filtrarCategoria('consejos', this)">💡 Consejos y trucos</button>
+            </div>
+          </div>
+
+          <!-- GRID DE ARTÍCULOS -->
+          <div class="articles-grid" id="articles-grid">
+
+            <article class="article-card reveal" data-cat="cocina">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#FFF3ED,#FF8C42);">🥩</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--orange" style="font-size:.7rem;padding:3px 8px;">Cocina</span>
+                  <span class="article-card__date">8 de enero, 2025</span>
+                </div>
+                <h3 class="article-card__title">Cómo limpiar una parrilla después del asado sin esfuerzo</h3>
+                <p class="article-card__excerpt">El truco que usan los expertos para tener una parrilla brillante con menos esfuerzo. La grasa del asado no tiene por qué ser tu enemiga.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="article-card reveal reveal-delay-1" data-cat="sustentabilidad">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#F0FFF4,#2ECC71);">🌿</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;font-size:.7rem;padding:3px 8px;">Sustentabilidad</span>
+                  <span class="article-card__date">2 de enero, 2025</span>
+                </div>
+                <h3 class="article-card__title">¿Por qué cambiar tus cotonetes de plástico por bambú?</h3>
+                <p class="article-card__excerpt">Descubre el impacto ambiental de hacer este pequeño cambio y cuáles son los beneficios para tu piel y el planeta.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="article-card reveal reveal-delay-2" data-cat="consejos">
+              <div class="article-card__img" style="background:linear-gradient(135deg,var(--teal-pale),#80DEEA);">✨</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Consejos</span>
+                  <span class="article-card__date">20 de diciembre, 2024</span>
+                </div>
+                <h3 class="article-card__title">5 errores que cometes al limpiar tus sartenes antiadherentes</h3>
+                <p class="article-card__excerpt">Los sartenes antiadherentes son delicados. Aprende qué fibras puedes usar, cuáles debes evitar y cómo alargar su vida útil.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="article-card reveal" data-cat="limpieza">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#F5F7FA,#B0BEC5);">🚿</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Limpieza</span>
+                  <span class="article-card__date">10 de diciembre, 2024</span>
+                </div>
+                <h3 class="article-card__title">Cómo eliminar el sarro del baño con productos naturales</h3>
+                <p class="article-card__excerpt">El sarro es el enemigo número uno del baño. Te damos la receta casera más efectiva y la fibra correcta para dejarlo impecable.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="article-card reveal reveal-delay-1" data-cat="cocina">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#E8F7F9,#0095A8);">🫕</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--orange" style="font-size:.7rem;padding:3px 8px;">Cocina</span>
+                  <span class="article-card__date">1 de diciembre, 2024</span>
+                </div>
+                <h3 class="article-card__title">El secreto para limpiar el comal sin rayarlo</h3>
+                <p class="article-card__excerpt">El comal acumula residuos de tortillas, chile y grasa que se carboniza. Esta es la técnica para dejarlo listo para el siguiente uso.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="article-card reveal reveal-delay-2" data-cat="consejos">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#FFF3ED,#FFAB76);">🧽</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Consejos</span>
+                  <span class="article-card__date">18 de noviembre, 2024</span>
+                </div>
+                <h3 class="article-card__title">Fibra de acero vs. fibra de plástico: ¿cuál limpia mejor?</h3>
+                <p class="article-card__excerpt">Una comparación honesta entre los dos tipos de fibras más populares. Cuándo usar cada una y por qué el acero inoxidable gana en casi todo.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="article-card reveal" data-cat="sustentabilidad">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#E8F5E9,#66BB6A);">♻️</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;font-size:.7rem;padding:3px 8px;">Sustentabilidad</span>
+                  <span class="article-card__date">5 de noviembre, 2024</span>
+                </div>
+                <h3 class="article-card__title">10 hábitos de limpieza sustentables que puedes adoptar hoy</h3>
+                <p class="article-card__excerpt">Pequeños cambios en tu rutina de limpieza que marcan una gran diferencia para el medio ambiente. Sin sacrificar efectividad.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="article-card reveal reveal-delay-1" data-cat="limpieza">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#F3E5F5,#AB47BC);">🏠</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Limpieza</span>
+                  <span class="article-card__date">22 de octubre, 2024</span>
+                </div>
+                <h3 class="article-card__title">Rutina de limpieza semanal para cocinas de restaurante</h3>
+                <p class="article-card__excerpt">Los profesionales de la hostelería siguen protocolos estrictos. Aquí te compartimos la rutina que usan y cómo adaptarla al hogar.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="article-card reveal reveal-delay-2" data-cat="consejos">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#E8F7F9,#26C6DA);">🔬</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Consejos</span>
+                  <span class="article-card__date">8 de octubre, 2024</span>
+                </div>
+                <h3 class="article-card__title">¿Con qué frecuencia debes cambiar tu fibra de cocina?</h3>
+                <p class="article-card__excerpt">Una fibra vieja es un foco de bacterias. Te explicamos cada cuánto cambiarla, cómo cuidarla y por qué el acero inoxidable dura más.</p>
+                <a href="#" class="article-card__read">
+                  Leer más
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- MENSAJE SIN RESULTADOS -->
+          <div id="no-articles" style="display:none;text-align:center;padding:64px 0;">
+            <div style="font-size:3rem;margin-bottom:16px;">📝</div>
+            <h3 style="margin-bottom:8px;">Próximamente más artículos</h3>
+            <p>Estamos preparando contenido en esta categoría. Regresa pronto.</p>
+          </div>
+
+          <!-- PAGINACIÓN -->
+          <div class="pagination" id="pagination">
+            <button class="page-btn page-btn--prev" disabled style="opacity:.4;cursor:not-allowed;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>
+              Anterior
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn page-btn--next">
+              Siguiente
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+          <!-- Búsqueda -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">Buscar artículos</div>
+            <div style="position:relative;">
+              <input type="text" class="form-control" placeholder="Buscar..." id="blog-search" style="padding-right:44px;">
+              <button onclick="buscarArticulos()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--teal);cursor:pointer;padding:4px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Artículos populares -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">Artículos populares</div>
+            <div style="display:flex;flex-direction:column;gap:0;">
+              <a href="#" style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--gray-light);text-decoration:none;">
+                <div style="width:56px;height:56px;background:linear-gradient(135deg,#FFF3ED,#FF8C42);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🥩</div>
+                <div>
+                  <div style="font-size:.85rem;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:3px;">Cómo limpiar parrilla después del asado</div>
+                  <div style="font-size:.75rem;color:var(--gray);">8 ene, 2025</div>
+                </div>
+              </a>
+              <a href="#" style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--gray-light);text-decoration:none;">
+                <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--teal-pale),#80DEEA);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">✨</div>
+                <div>
+                  <div style="font-size:.85rem;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:3px;">5 errores limpiando sartenes antiadherentes</div>
+                  <div style="font-size:.75rem;color:var(--gray);">20 dic, 2024</div>
+                </div>
+              </a>
+              <a href="#" style="display:flex;gap:12px;padding:12px 0;text-decoration:none;">
+                <div style="width:56px;height:56px;background:linear-gradient(135deg,#F0FFF4,#2ECC71);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🌿</div>
+                <div>
+                  <div style="font-size:.85rem;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:3px;">Por qué cambiar a cotonetes de bambú</div>
+                  <div style="font-size:.75rem;color:var(--gray);">2 ene, 2025</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">Temas</div>
+            <div>
+              <span class="sidebar-tag">Limpieza del hogar</span>
+              <span class="sidebar-tag">Cocina mexicana</span>
+              <span class="sidebar-tag">Parrilla</span>
+              <span class="sidebar-tag">Ollas y sartenes</span>
+              <span class="sidebar-tag">Sustentabilidad</span>
+              <span class="sidebar-tag">Bambú</span>
+              <span class="sidebar-tag">Fibra de acero</span>
+              <span class="sidebar-tag">Cotonetes</span>
+              <span class="sidebar-tag">Toalla exfoliante</span>
+              <span class="sidebar-tag">Trucos caseros</span>
+              <span class="sidebar-tag">Baño</span>
+            </div>
+          </div>
+
+          <!-- CTA producto -->
+          <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal));border-radius:var(--radius);padding:28px;color:white;text-align:center;">
+            <div style="font-size:2.5rem;margin-bottom:12px;">🔩</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;margin-bottom:8px;">Fibras Ziroba</div>
+            <p style="color:rgba(255,255,255,.85);font-size:.85rem;margin-bottom:16px;">La herramienta de limpieza que usan los distribuidores más exigentes de México.</p>
+            <a href="productos.html" class="btn btn--orange btn--sm" style="width:100%;justify-content:center;">Ver productos</a>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section section--dark">
+    <div class="container text-center">
+      <span class="section-label" style="color:var(--teal-light);">No te pierdas nada</span>
+      <h2 style="color:white;margin-bottom:12px;">Recibe consejos de limpieza cada semana</h2>
+      <p style="color:rgba(255,255,255,.7);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;">Tips exclusivos, recetas de limpieza y novedades de productos Ziroba directo en tu correo. Sin spam.</p>
+      <form data-form="blog-newsletter" style="max-width:460px;margin:0 auto;">
+        <div class="form-inline">
+          <input type="email" class="form-control" placeholder="tu@correo.com" required style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:white;">
+          <button type="submit" class="btn btn--orange" style="white-space:nowrap;">Suscribirme</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo"><div class="footer__logo-badge">Z</div>Ziroba México</div>
+          <p class="footer__desc">La Reina del Hogar. Productos de limpieza 100% mexicanos con la calidad que tu familia y negocio merecen.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-btn" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" class="footer__social-btn" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+            <a href="https://wa.me/525543427293" class="footer__social-btn" aria-label="WhatsApp" style="background:rgba(37,211,102,.15);color:#25D366;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967c-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Navegación</div>
+          <ul class="footer__links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="distribuidores.html">Distribuidores</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Productos</div>
+          <ul class="footer__links">
+            <li><a href="productos.html#fibras">Fibras de Acero Inoxidable</a></li>
+            <li><a href="productos.html#cotonetes">Cotonetes de Bambú</a></li>
+            <li><a href="productos.html#toallas">Toalla Exfoliante</a></li>
+            <li><a href="catalogo.html">Catálogo 2025</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__col-title">Contacto</div>
+          <div class="footer__contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Vicente Guerrero 58, Urbana Ixhuatepec, Ecatepec, Estado de México
+          </div>
+          <div class="footer__contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12.5 19.79 19.79 0 01.12 4 2 2 0 012.1 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.17 6.17l1.08-1.34a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+525543427293" style="color:inherit;">(+52) 55 4342 7293</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:ventas@zirobamexico.com" style="color:inherit;">ventas@zirobamexico.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:rgba(0,0,0,.2);">
+      <div class="container">
+        <div class="footer__bottom">
+          <span>© 2025 Ziroba México · La Reina del Hogar</span>
+          <a href="#">Política de Privacidad</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/525543427293?text=Hola%2C+me+interesa+conocer+los+productos+Ziroba." target="_blank" rel="noopener" class="wa-fab" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967c-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="js/main.js"></script>
+  <script>
+    function filtrarCategoria(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const articles = document.querySelectorAll('#articles-grid .article-card');
+      const noArticles = document.getElementById('no-articles');
+      const pagination = document.getElementById('pagination');
+      let visible = 0;
+
+      articles.forEach(article => {
+        const show = cat === 'todos' || article.dataset.cat === cat;
+        article.style.display = show ? 'flex' : 'none';
+        if (show) visible++;
+      });
+
+      noArticles.style.display = visible === 0 ? 'block' : 'none';
+      pagination.style.display = visible === 0 ? 'none' : 'flex';
+    }
+
+    function buscarArticulos() {
+      const query = document.getElementById('blog-search').value.toLowerCase().trim();
+      if (!query) return;
+
+      const articles = document.querySelectorAll('#articles-grid .article-card');
+      let visible = 0;
+
+      articles.forEach(article => {
+        const title = article.querySelector('.article-card__title')?.textContent.toLowerCase() || '';
+        const excerpt = article.querySelector('.article-card__excerpt')?.textContent.toLowerCase() || '';
+        const match = title.includes(query) || excerpt.includes(query);
+        article.style.display = match ? 'flex' : 'none';
+        if (match) visible++;
+      });
+
+      document.getElementById('no-articles').style.display = visible === 0 ? 'block' : 'none';
+      document.getElementById('pagination').style.display = visible === 0 ? 'none' : 'flex';
+
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    }
+
+    document.getElementById('blog-search').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') buscarArticulos();
+      if (e.key === 'Escape' || e.target.value === '') {
+        filtrarCategoria('todos', document.querySelector('.filter-btn'));
+      }
+    });
+  </script>
+</body>
+</html>
