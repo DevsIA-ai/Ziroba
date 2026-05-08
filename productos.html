@@ -6,6 +6,121 @@
   <title>Productos — Fibras de Acero Inoxidable, Cotonetes y Toallas | Ziroba México</title>
   <meta name="description" content="Fibras de acero inoxidable para cocina, ollas, sartenes y parrillas. 8 presentaciones disponibles. Cotonetes de bambú y toallas exfoliantes. Venta al mayoreo.">
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* === HERO CAROUSEL === */
+    .product-carousel { position:relative; overflow:hidden; }
+    .carousel-track {
+      display:flex; width:300%;
+      transition:transform .6s cubic-bezier(.4,0,.2,1);
+      will-change:transform;
+    }
+    .carousel-slide {
+      width:33.3333%; flex-shrink:0;
+      padding:76px 0 92px; min-height:440px;
+      display:flex; align-items:center;
+    }
+    .carousel-inner {
+      display:grid; grid-template-columns:1fr 360px;
+      gap:60px; align-items:center;
+    }
+    .carousel-badge {
+      display:inline-block; font-size:.78rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.1em;
+      color:rgba(255,255,255,.8); background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.25); border-radius:100px;
+      padding:5px 16px; margin-bottom:18px;
+    }
+    .carousel-title {
+      font-size:clamp(2rem,4vw,3rem); font-weight:800; color:white;
+      margin:0 0 16px; line-height:1.1; font-family:'Montserrat',sans-serif;
+    }
+    .carousel-desc { color:rgba(255,255,255,.82); font-size:1.05rem; margin-bottom:24px; line-height:1.65; }
+    .carousel-features { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+    .carousel-chip {
+      font-size:.8rem; font-weight:600;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.28);
+      color:rgba(255,255,255,.92); border-radius:100px; padding:4px 12px;
+    }
+    .carousel-ctas { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn--white { background:white; color:var(--navy) !important; font-weight:700; }
+    .btn--white:hover { background:rgba(255,255,255,.9); }
+    .btn--outline-white {
+      background:transparent; border:2px solid rgba(255,255,255,.55);
+      color:white !important; font-weight:700;
+    }
+    .btn--outline-white:hover { background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.85); }
+    .carousel-visual {
+      display:flex; flex-direction:column; align-items:center;
+      justify-content:center; gap:14px; padding:40px;
+      border-radius:24px; background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    }
+    .carousel-emoji { font-size:6rem; line-height:1; }
+    .carousel-visual-name { font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.05rem; color:white; text-align:center; }
+    .carousel-visual-sub { font-size:.82rem; color:rgba(255,255,255,.7); text-align:center; }
+    .carousel-arrow {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:46px; height:46px; border-radius:50%;
+      background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.3);
+      color:white; cursor:pointer; display:flex; align-items:center;
+      justify-content:center; z-index:10;
+      transition:background .2s, transform .2s;
+      backdrop-filter:blur(8px);
+    }
+    .carousel-arrow:hover { background:rgba(255,255,255,.32); transform:translateY(-50%) scale(1.08); }
+    .carousel-arrow--prev { left:24px; }
+    .carousel-arrow--next { right:24px; }
+    .carousel-dots {
+      position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
+      display:flex; gap:8px; z-index:10;
+    }
+    .carousel-dot {
+      width:8px; height:8px; border-radius:50%;
+      background:rgba(255,255,255,.38); cursor:pointer;
+      transition:background .2s, width .3s, border-radius .3s;
+      border:none; padding:0;
+    }
+    .carousel-dot.active { background:white; width:24px; border-radius:4px; }
+
+    /* === PRODUCT TABS BAR === */
+    .product-tabs-bar {
+      background:white; border-bottom:1px solid var(--gray-light);
+      position:sticky; top:72px; z-index:50;
+      padding:10px 0; box-shadow:0 2px 16px rgba(0,0,0,.07);
+    }
+    .product-tabs { display:flex; gap:8px; }
+    .product-tab {
+      display:flex; align-items:center; gap:12px;
+      padding:12px 20px; border-radius:12px; text-decoration:none;
+      transition:all .22s; flex:1; background:#F4F6F8;
+      border:2px solid transparent;
+    }
+    .product-tab__icon { font-size:1.55rem; flex-shrink:0; line-height:1; }
+    .product-tab__name {
+      font-weight:700; font-size:.88rem; color:var(--navy);
+      font-family:'Montserrat',sans-serif; transition:color .22s;
+    }
+    .product-tab__sub { font-size:.72rem; color:var(--gray); margin-top:2px; transition:color .22s; }
+    .product-tab--teal:hover, .product-tab--teal.active { background:var(--teal); border-color:var(--teal-dark); }
+    .product-tab--green:hover, .product-tab--green.active { background:#27ae60; border-color:#1e8449; }
+    .product-tab--orange:hover, .product-tab--orange.active { background:var(--orange); border-color:#e05c0a; }
+    .product-tab--teal:hover .product-tab__name, .product-tab--teal.active .product-tab__name,
+    .product-tab--teal:hover .product-tab__sub, .product-tab--teal.active .product-tab__sub,
+    .product-tab--green:hover .product-tab__name, .product-tab--green.active .product-tab__name,
+    .product-tab--green:hover .product-tab__sub, .product-tab--green.active .product-tab__sub,
+    .product-tab--orange:hover .product-tab__name, .product-tab--orange.active .product-tab__name,
+    .product-tab--orange:hover .product-tab__sub, .product-tab--orange.active .product-tab__sub { color:white; }
+
+    @media (max-width:768px) {
+      .carousel-inner { grid-template-columns:1fr; }
+      .carousel-visual { display:none; }
+      .carousel-arrow { display:none; }
+      .product-tab__sub { display:none; }
+      .product-tab { padding:10px 12px; gap:8px; }
+      .product-tab__name { font-size:.8rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -88,29 +203,146 @@
     </div>
   </div>
 
-  <!-- PAGE HERO -->
-  <section class="page-hero">
-    <div class="container">
-      <nav class="breadcrumb">
-        <a href="index.html">Inicio</a>
-        <span class="breadcrumb__sep">/</span>
-        <span>Productos</span>
-      </nav>
-      <h1>Nuestros Productos</h1>
-      <p>Calidad que se nota en cada uso. Más de 15 presentaciones para distribuir, revender o usar en tu hogar o negocio.</p>
+  <!-- HERO CAROUSEL -->
+  <section class="product-carousel" aria-label="Líneas de productos">
+    <div class="carousel-track">
+
+      <!-- SLIDE 1: Fibras -->
+      <div class="carousel-slide" style="background:linear-gradient(135deg,#00768A 0%,#0095A8 55%,#1A1A2E 100%);">
+        <div class="container">
+          <div class="carousel-inner">
+            <div>
+              <span class="carousel-badge">Línea estrella</span>
+              <h1 class="carousel-title">Fibra ZIROBA</h1>
+              <p class="carousel-desc">Para limpiar y remover la grasa pegada en ollas, sartenes, parrillas y asadores. Acero inoxidable premium que no se oxida ni deja residuos, uso tras uso.</p>
+              <div class="carousel-features">
+                <span class="carousel-chip">No se oxida</span>
+                <span class="carousel-chip">Limpieza profunda</span>
+                <span class="carousel-chip">Máxima duración</span>
+                <span class="carousel-chip">8 presentaciones</span>
+              </div>
+              <div class="carousel-ctas">
+                <a href="#fibras" class="btn btn--white btn--lg">Ver presentaciones</a>
+                <a href="distribuidores.html" class="btn btn--outline-white btn--lg">Cotizar</a>
+              </div>
+            </div>
+            <div class="carousel-visual">
+              <div class="carousel-emoji">🔩</div>
+              <div class="carousel-visual-name">Fibra ZIROBA</div>
+              <div class="carousel-visual-sub">Acero Inoxidable Premium</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: Cotonetes -->
+      <div class="carousel-slide" style="background:linear-gradient(135deg,#1B5E20 0%,#27ae60 55%,#1A1A2E 100%);">
+        <div class="container">
+          <div class="carousel-inner">
+            <div>
+              <span class="carousel-badge">Línea ecológica</span>
+              <h1 class="carousel-title">Cotonetes ZIROBA</h1>
+              <p class="carousel-desc">Mango de bambú biodegradable y punta 100% de algodón. Para Belleza, Bebés y Hogar — recomendados para toda la familia sin dañar el medio ambiente.</p>
+              <div class="carousel-features">
+                <span class="carousel-chip">Biodegradable</span>
+                <span class="carousel-chip">Compostable</span>
+                <span class="carousel-chip">Algodón 100%</span>
+                <span class="carousel-chip">3 presentaciones</span>
+              </div>
+              <div class="carousel-ctas">
+                <a href="#cotonetes" class="btn btn--white btn--lg">Ver presentaciones</a>
+                <a href="distribuidores.html" class="btn btn--outline-white btn--lg">Cotizar</a>
+              </div>
+            </div>
+            <div class="carousel-visual">
+              <div class="carousel-emoji">🌿</div>
+              <div class="carousel-visual-name">Cotonetes Ziroba</div>
+              <div class="carousel-visual-sub">Biodegradable y Compostable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: Zacate / Toalla -->
+      <div class="carousel-slide" style="background:linear-gradient(135deg,#1A1A2E 0%,#B84400 50%,#FF6B1A 100%);">
+        <div class="container">
+          <div class="carousel-inner">
+            <div>
+              <span class="carousel-badge">Línea Zacate Ziroba</span>
+              <h1 class="carousel-title">Toalla Exfoliante Corporal</h1>
+              <p class="carousel-desc">Creada con los más altos estándares de calidad. Ideal para todo tipo de piel, elimina células muertas y activa la circulación dejando la piel suave y renovada.</p>
+              <div class="carousel-features">
+                <span class="carousel-chip">Todo tipo de piel</span>
+                <span class="carousel-chip">Alta calidad</span>
+                <span class="carousel-chip">Cuidado corporal</span>
+                <span class="carousel-chip">4 presentaciones</span>
+              </div>
+              <div class="carousel-ctas">
+                <a href="#toallas" class="btn btn--white btn--lg">Ver presentaciones</a>
+                <a href="distribuidores.html" class="btn btn--outline-white btn--lg">Cotizar</a>
+              </div>
+            </div>
+            <div class="carousel-visual">
+              <div class="carousel-emoji">🛁</div>
+              <div class="carousel-visual-name">Zacate ZIROBA</div>
+              <div class="carousel-visual-sub">Toalla Exfoliante Corporal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-arrow carousel-arrow--prev" aria-label="Anterior">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="carousel-arrow carousel-arrow--next" aria-label="Siguiente">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="carousel-dots">
+      <button class="carousel-dot active" aria-label="Fibras"></button>
+      <button class="carousel-dot" aria-label="Cotonetes"></button>
+      <button class="carousel-dot" aria-label="Toalla Exfoliante"></button>
     </div>
   </section>
 
-  <!-- TABS NAV -->
-  <div style="background:white;border-bottom:1px solid var(--gray-light);position:sticky;top:72px;z-index:50;">
+  <!-- TABS NAV (nuevo diseño) -->
+  <div class="product-tabs-bar">
     <div class="container">
-      <div class="tabs" style="margin-bottom:0;">
-        <a href="#fibras" class="tab-btn active">🔩 Fibras de Acero Inoxidable</a>
-        <a href="#cotonetes" class="tab-btn">🌿 Cotonetes de Bambú</a>
-        <a href="#toallas" class="tab-btn">🛁 Toalla Exfoliante</a>
+      <div class="product-tabs">
+        <a href="#fibras" class="product-tab product-tab--teal active">
+          <span class="product-tab__icon">🔩</span>
+          <div>
+            <div class="product-tab__name">Fibras de Acero Inoxidable</div>
+            <div class="product-tab__sub">8 presentaciones · Bolsa, Mega y Blíster</div>
+          </div>
+        </a>
+        <a href="#cotonetes" class="product-tab product-tab--green">
+          <span class="product-tab__icon">🌿</span>
+          <div>
+            <div class="product-tab__name">Cotonetes de Bambú</div>
+            <div class="product-tab__sub">3 presentaciones · Bambú + Algodón 100%</div>
+          </div>
+        </a>
+        <a href="#toallas" class="product-tab product-tab--orange">
+          <span class="product-tab__icon">🛁</span>
+          <div>
+            <div class="product-tab__name">Toalla Exfoliante Corporal</div>
+            <div class="product-tab__sub">4 presentaciones · Línea Zacate Ziroba</div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
+  <!-- PRODUCTS INTRO -->
+  <div style="text-align:center;padding:52px 0 20px;">
+    <div class="container">
+      <span class="section-label">Lo que fabricamos</span>
+      <h2 class="section-title" style="margin-bottom:12px;">Nuestros Productos</h2>
+      <p style="max-width:580px;margin:0 auto;color:var(--gray);">Calidad que se nota en cada uso. Más de 15 presentaciones para distribuir, revender o usar en tu hogar o negocio.</p>
+    </div>
+  </div>
+
 
   <!-- FIBRAS -->
   <section id="fibras" class="section">
@@ -118,24 +350,41 @@
       <div class="split" style="margin-bottom:64px;">
         <div>
           <span class="section-label">Línea estrella</span>
-          <h2 class="section-title">Fibras de Acero Inoxidable</h2>
-          <p style="margin-bottom:24px;">Diseñadas específicamente para enfrentar los retos de la cocina mexicana: grasa de asado, costras de olla exprés, fondos quemados. Las fibras Ziroba son fabricadas con acero inoxidable de grado alimenticio, lo que garantiza que no se oxiden ni contaminen tus utensilios, aún después de decenas de usos.</p>
-          <p style="margin-bottom:28px;">A diferencia de las fibras comunes que se deshacen en pocos días y dejan residuos metálicos, Ziroba mantiene su forma y eficacia uso tras uso.</p>
+          <h2 class="section-title">Fibra ZIROBA</h2>
+          <p style="margin-bottom:24px;">Creada especialmente para limpiar y remover la grasa pegada en utensilios de cocina: ollas, sartenes, parrillas, asadores y más. Fabricada con acero inoxidable de alta calidad, garantiza una limpieza profunda sin oxidarse ni dañar tus utensilios, uso tras uso.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Brinda una limpieza profunda</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Remueve residuos de grasa pegada</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>No se oxida · Resiste a la corrosión</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Ofrece máxima duración</span>
+            </div>
+          </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
             <span class="badge badge--teal">No se oxida</span>
-            <span class="badge badge--teal">Grado alimenticio</span>
+            <span class="badge badge--teal">Acero Inoxidable</span>
             <span class="badge badge--teal">Máxima durabilidad</span>
             <span class="badge badge--green">100% Mexicano</span>
           </div>
           <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <a href="distribuidores.html" class="btn btn--primary">Solicitar cotización mayoreo</a>
-            <a href="catalogo.html" class="btn btn--outline-teal">Descargar ficha técnica</a>
+            <a href="distribuidores.html" class="btn btn--primary">Solicitar cotización</a>
+            <a href="catalogo.html" class="btn btn--outline-teal">Descargar catálogo</a>
           </div>
         </div>
         <div style="background:linear-gradient(135deg,var(--teal-pale),#B2EBF2);border-radius:var(--radius);aspect-ratio:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;" class="reveal">
           <div style="font-size:7rem;">🔩</div>
           <div style="text-align:center;">
-            <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--teal);font-size:1.2rem;">Fibra FBL-2</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--teal);font-size:1.2rem;">Fibra ZIROBA</div>
             <div style="font-size:.9rem;color:var(--gray);">Acero Inoxidable Premium</div>
           </div>
         </div>
@@ -164,24 +413,86 @@
         </div>
       </div>
 
-      <!-- Grid de productos -->
-      <h3 style="margin-bottom:32px;">Presentaciones disponibles</h3>
-      <div class="grid-4">
+      <!-- Presentaciones -->
+      <h3 style="margin-bottom:8px;">Presentaciones disponibles</h3>
+      <p style="color:var(--gray);margin-bottom:32px;font-size:.95rem;">8 SKUs en tres sub-líneas para cubrir todos los canales de venta.</p>
+
+      <!-- Sub-línea Bolsa -->
+      <div style="margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--teal-pale);">
+        <span style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);">Sub-línea Bolsa</span>
+      </div>
+      <div class="grid-4" style="margin-bottom:40px;">
         <div class="product-card reveal">
           <div class="product-card__img-wrap">
             <div class="product-card__img-placeholder">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
-              <span>FBL-1</span>
+              <span>FB-2</span>
             </div>
           </div>
           <div class="product-card__body">
-            <div class="product-card__code">Código: FBL-1</div>
-            <div class="product-card__name">Fibra Chica Individual</div>
-            <div class="product-card__detail">Blíster: 1 pieza · Caja máster: 144 pzas</div>
+            <div class="product-card__code">Código: FB-2</div>
+            <div class="product-card__name">Fibra ZIROBA Bolsa C-2</div>
+            <div class="product-card__detail">Caja Máster: 350 bolsas · 2 fibras c/u</div>
             <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
         <div class="product-card reveal reveal-delay-1">
+          <div class="product-card__img-wrap">
+            <div class="product-card__img-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
+              <span>FB-3</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">Código: FB-3</div>
+            <div class="product-card__name">Fibra ZIROBA Bolsa C-3</div>
+            <div class="product-card__detail">Caja Máster: 180 bolsas · 3 fibras c/u</div>
+            <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-línea Mega -->
+      <div style="margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--teal-pale);">
+        <span style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);">Sub-línea Mega</span>
+      </div>
+      <div class="grid-4" style="margin-bottom:40px;">
+        <div class="product-card reveal">
+          <div class="product-card__img-wrap">
+            <div class="product-card__img-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
+              <span>FBMG-1</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">Código: FBMG-1</div>
+            <div class="product-card__name">Fibra ZIROBA Mega C-1</div>
+            <div class="product-card__detail">Caja Máster: 190 bolsas · 1 fibra c/u</div>
+            <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
+          </div>
+        </div>
+        <div class="product-card reveal reveal-delay-1">
+          <div class="product-card__img-wrap">
+            <div class="product-card__img-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
+              <span>FBMG-2</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">Código: FBMG-2</div>
+            <div class="product-card__name">Fibra ZIROBA Mega C-2</div>
+            <div class="product-card__detail">Caja Máster: 130 bolsas · 2 fibras c/u</div>
+            <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-línea Blíster -->
+      <div style="margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--teal-pale);">
+        <span style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);">Sub-línea Blíster</span>
+      </div>
+      <div class="grid-4">
+        <div class="product-card reveal">
           <div class="product-card__img-wrap">
             <div class="product-card__img-placeholder">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
@@ -190,12 +501,12 @@
           </div>
           <div class="product-card__body">
             <div class="product-card__code">Código: FBL-2</div>
-            <div class="product-card__name">Fibra Mediana Blíster 2</div>
-            <div class="product-card__detail">Blíster: 2 piezas · Caja máster: 96 pzas</div>
+            <div class="product-card__name">Fibra ZIROBA Blíster C-2</div>
+            <div class="product-card__detail">Caja Máster: 160 blíster · 2 fibras c/u</div>
             <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
-        <div class="product-card reveal reveal-delay-2">
+        <div class="product-card reveal reveal-delay-1">
           <div class="product-card__img-wrap">
             <div class="product-card__img-placeholder">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
@@ -204,12 +515,12 @@
           </div>
           <div class="product-card__body">
             <div class="product-card__code">Código: FBL-3</div>
-            <div class="product-card__name">Fibra Mediana Blíster 3</div>
-            <div class="product-card__detail">Blíster: 3 piezas · Caja máster: 72 pzas</div>
+            <div class="product-card__name">Fibra ZIROBA Blíster C-3</div>
+            <div class="product-card__detail">Caja Máster: 115 blíster · 3 fibras c/u</div>
             <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
-        <div class="product-card reveal reveal-delay-3">
+        <div class="product-card reveal reveal-delay-2">
           <div class="product-card__img-wrap">
             <div class="product-card__img-placeholder">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
@@ -218,26 +529,12 @@
           </div>
           <div class="product-card__body">
             <div class="product-card__code">Código: FBL-5</div>
-            <div class="product-card__name">Fibra Grande Blíster 5</div>
-            <div class="product-card__detail">Blíster: 5 piezas · Caja máster: 48 pzas</div>
+            <div class="product-card__name">Fibra ZIROBA Blíster C-5</div>
+            <div class="product-card__detail">Caja Máster: 160 blíster · 5 fibras c/u</div>
             <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
-        <div class="product-card reveal">
-          <div class="product-card__img-wrap">
-            <div class="product-card__img-placeholder">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
-              <span>FBL-10</span>
-            </div>
-          </div>
-          <div class="product-card__body">
-            <div class="product-card__code">Código: FBL-10</div>
-            <div class="product-card__name">Fibra XL Blíster 10</div>
-            <div class="product-card__detail">Blíster: 10 piezas · Caja máster: 24 pzas</div>
-            <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
-          </div>
-        </div>
-        <div class="product-card reveal reveal-delay-1">
+        <div class="product-card reveal reveal-delay-3">
           <div class="product-card__img-wrap">
             <div class="product-card__img-placeholder">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
@@ -246,30 +543,10 @@
           </div>
           <div class="product-card__body">
             <div class="product-card__code">Código: FBL-12</div>
-            <div class="product-card__name">Pack Familiar 12</div>
-            <div class="product-card__detail">Blíster: 12 piezas · Caja máster: 12 pzas</div>
+            <div class="product-card__name">Fibra ZIROBA Blíster C-12</div>
+            <div class="product-card__detail">Caja Máster: 50 blíster · 12 bolsas de 1 fibra c/u</div>
             <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
-        </div>
-        <div class="product-card reveal reveal-delay-2">
-          <div class="product-card__img-wrap">
-            <div class="product-card__img-placeholder">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>
-              <span>FBL-25</span>
-            </div>
-          </div>
-          <div class="product-card__body">
-            <div class="product-card__code">Código: FBL-25</div>
-            <div class="product-card__name">Granel Negocios 25</div>
-            <div class="product-card__detail">Blíster: 25 piezas · Caja máster: 6 pzas</div>
-            <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
-          </div>
-        </div>
-        <div class="product-card reveal reveal-delay-3" style="border:2px dashed var(--teal-pale);background:var(--teal-pale);justify-content:center;align-items:center;display:flex;flex-direction:column;padding:32px;text-align:center;">
-          <div style="font-size:2.5rem;margin-bottom:12px;">📋</div>
-          <div style="font-weight:700;margin-bottom:8px;">¿Necesitas otra presentación?</div>
-          <p style="font-size:.85rem;margin-bottom:16px;">Podemos adaptarnos a tus necesidades de volumen.</p>
-          <a href="contacto.html" class="btn btn--outline-teal btn--sm">Consultar</a>
         </div>
       </div>
     </div>
@@ -284,20 +561,33 @@
         <div style="background:linear-gradient(135deg,#F0FFF4,#A5D6A7);border-radius:var(--radius);aspect-ratio:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;order:-1;" class="reveal">
           <div style="font-size:7rem;">🪄</div>
           <div style="text-align:center;">
-            <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:#27ae60;font-size:1.2rem;">Cotonete Bambú</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:#27ae60;font-size:1.2rem;">Cotonetes Ziroba</div>
             <div style="font-size:.9rem;color:var(--gray);">Biodegradable y Compostable</div>
           </div>
         </div>
         <div class="reveal reveal-delay-1">
           <span class="section-label" style="color:#27ae60;">Línea ecológica</span>
-          <h2 class="section-title">Cotonetes de Bambú</h2>
-          <p style="margin-bottom:24px;">La alternativa sustentable al cotonete de plástico convencional. El mango de bambú es 100% biodegradable y compostable, mientras que las puntas de algodón natural ofrecen la suavidad que necesitas para cuidado personal, belleza y limpieza del hogar.</p>
-          <p style="margin-bottom:28px;">Para amas de casa conscientes, mamás que cuidan a sus bebés y negocios de salud y belleza que buscan diferenciarse con productos responsables con el medio ambiente.</p>
+          <h2 class="section-title">Cotonetes ZIROBA</h2>
+          <p style="margin-bottom:24px;">Elaborados con materia prima de calidad: punta 100% de algodón y mango de bambú. Son biodegradables y compostables, amigables con el medio ambiente — sin sacrificar la suavidad y eficacia que toda la familia necesita.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Para Belleza, Bebés y Hogar</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Recomendados para toda la familia</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Ideal para limpiar áreas difíciles de alcanzar</span>
+            </div>
+          </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
             <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;">Biodegradable</span>
             <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;">Compostable</span>
             <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;">Algodón 100%</span>
-            <span class="badge badge--teal">Libre de plástico</span>
+            <span class="badge badge--teal">Hechos de Bambú</span>
           </div>
           <div style="display:flex;gap:12px;flex-wrap:wrap;">
             <a href="distribuidores.html" class="btn btn--primary">Solicitar cotización</a>
@@ -312,13 +602,17 @@
           <div class="product-card__img-wrap" style="background:#F0FFF4;">
             <div class="product-card__img-placeholder" style="color:#27ae60;">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/></svg>
-              <span>CTB-100</span>
+              <span>310-Z</span>
             </div>
           </div>
           <div class="product-card__body">
-            <div class="product-card__code">Código: CTB-100</div>
-            <div class="product-card__name">Cotonete Bambú 100 pzas</div>
-            <div class="product-card__detail">Caja: 100 piezas · Caja máster: 24 cajas</div>
+            <div class="product-card__code">Código: 310-Z</div>
+            <div class="product-card__name">Cotonetes Ziroba 310</div>
+            <div class="product-card__detail">Caja Máster: 120 paquetes · 310 cotonetes c/u</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;">
+              <span style="font-size:.72rem;background:#F0FFF4;color:#27ae60;border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 6px;">Bambú</span>
+              <span style="font-size:.72rem;background:#F0FFF4;color:#27ae60;border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 6px;">Algodón</span>
+            </div>
             <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
@@ -326,13 +620,17 @@
           <div class="product-card__img-wrap" style="background:#F0FFF4;">
             <div class="product-card__img-placeholder" style="color:#27ae60;">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/></svg>
-              <span>CTB-200</span>
+              <span>410-Z</span>
             </div>
           </div>
           <div class="product-card__body">
-            <div class="product-card__code">Código: CTB-200</div>
-            <div class="product-card__name">Cotonete Bambú 200 pzas</div>
-            <div class="product-card__detail">Caja: 200 piezas · Caja máster: 12 cajas</div>
+            <div class="product-card__code">Código: 410-Z</div>
+            <div class="product-card__name">Cotonetes Ziroba 410</div>
+            <div class="product-card__detail">Caja Máster: 120 paquetes · 410 cotonetes c/u</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;">
+              <span style="font-size:.72rem;background:#F0FFF4;color:#27ae60;border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 6px;">Bambú</span>
+              <span style="font-size:.72rem;background:#F0FFF4;color:#27ae60;border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 6px;">Algodón</span>
+            </div>
             <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
@@ -340,41 +638,59 @@
           <div class="product-card__img-wrap" style="background:#F0FFF4;">
             <div class="product-card__img-placeholder" style="color:#27ae60;">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/></svg>
-              <span>CTB-500</span>
+              <span>510-Z</span>
             </div>
           </div>
           <div class="product-card__body">
-            <div class="product-card__code">Código: CTB-500</div>
-            <div class="product-card__name">Cotonete Bambú 500 pzas</div>
-            <div class="product-card__detail">Caja: 500 piezas · Caja máster: 6 cajas</div>
+            <div class="product-card__code">Código: 510-Z</div>
+            <div class="product-card__name">Cotonetes Ziroba 510</div>
+            <div class="product-card__detail">Caja Máster: 120 paquetes · 510 cotonetes c/u</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;">
+              <span style="font-size:.72rem;background:#F0FFF4;color:#27ae60;border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 6px;">Bambú</span>
+              <span style="font-size:.72rem;background:#F0FFF4;color:#27ae60;border:1px solid rgba(46,204,113,.3);border-radius:4px;padding:2px 6px;">Algodón</span>
+            </div>
             <a href="distribuidores.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
-        <div class="product-card reveal reveal-delay-3" style="border:2px dashed rgba(46,204,113,.3);background:rgba(46,204,113,.05);justify-content:center;align-items:center;display:flex;flex-direction:column;padding:32px;text-align:center;">
+        
+  <!--<div class="product-card reveal reveal-delay-3" style="border:2px dashed rgba(46,204,113,.3);background:rgba(46,204,113,.05);justify-content:center;align-items:center;display:flex;flex-direction:column;padding:32px;text-align:center;">
           <div style="font-size:2.5rem;margin-bottom:12px;">🌿</div>
           <div style="font-weight:700;margin-bottom:8px;">Diseño personalizado</div>
           <p style="font-size:.85rem;margin-bottom:16px;">Tu marca en los cotonetes de bambú Ziroba.</p>
           <a href="contacto.html" class="btn btn--sm" style="background:rgba(46,204,113,.2);color:#27ae60;border:1px solid rgba(46,204,113,.4);">Consultar</a>
         </div>
-      </div>
+      </div>-->
     </div>
   </section>
 
   <hr style="border:none;border-top:4px solid var(--gray-light);margin:0;">
 
-  <!-- TOALLAS -->
+  <!-- TOALLAS / ZACATE -->
   <section id="toallas" class="section">
     <div class="container">
       <div class="split" style="margin-bottom:64px;">
         <div>
-          <span class="section-label" style="color:var(--orange);">Línea premium</span>
+          <span class="section-label" style="color:var(--orange);">Línea Zacate ZIROBA</span>
           <h2 class="section-title">Toalla Exfoliante Corporal</h2>
-          <p style="margin-bottom:24px;">Fabricada con los más altos estándares de calidad para garantizar una experiencia de exfoliación natural, suave pero efectiva. Diseñada para todo tipo de piel, activa la circulación y elimina células muertas dejando la piel suave y radiante.</p>
-          <p style="margin-bottom:28px;">Ideal para distribución en tiendas de salud y belleza, spas, hoteles y farmacias. Un producto de alto margen con excelente rotación.</p>
+          <p style="margin-bottom:24px;">Creada con materiales y estándares de la más alta calidad, ideal para todo tipo de personas y todo tipo de piel. Activa la circulación, elimina células muertas y llega a las áreas de difícil acceso, dejando la piel suave y renovada.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Para limpieza corporal · Todo tipo de piel</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Ideal para áreas difíciles de alcanzar</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.95rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Remueve el exceso de células muertas</span>
+            </div>
+          </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
-            <span class="badge badge--orange">Premium</span>
+            <span class="badge badge--orange">Cuidado personal</span>
             <span class="badge badge--teal">Todo tipo de piel</span>
-            <span class="badge badge--teal">Larga duración</span>
+            <span class="badge badge--teal">Alta calidad</span>
           </div>
           <div style="display:flex;gap:12px;flex-wrap:wrap;">
             <a href="distribuidores.html" class="btn btn--orange">Solicitar cotización</a>
@@ -384,8 +700,8 @@
         <div style="background:linear-gradient(135deg,#FFF3ED,#FFCC99);border-radius:var(--radius);aspect-ratio:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;" class="reveal">
           <div style="font-size:7rem;">🛁</div>
           <div style="text-align:center;">
-            <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--orange);font-size:1.2rem;">Toalla Exfoliante</div>
-            <div style="font-size:.9rem;color:var(--gray);">Cuidado corporal premium</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:var(--orange);font-size:1.2rem;">Zacate ZIROBA</div>
+            <div style="font-size:.9rem;color:var(--gray);">Toalla Exfoliante Corporal</div>
           </div>
         </div>
       </div>
@@ -396,13 +712,13 @@
           <div class="product-card__img-wrap" style="background:#FFF3ED;">
             <div class="product-card__img-placeholder" style="color:var(--orange);">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
-              <span>TEX-1</span>
+              <span>TECZ-C</span>
             </div>
           </div>
           <div class="product-card__body">
-            <div class="product-card__code">Código: TEX-1</div>
-            <div class="product-card__name">Toalla Individual</div>
-            <div class="product-card__detail">Presentación: 1 pieza · Caja máster: 48 pzas</div>
+            <div class="product-card__code">Código: TECZ-C</div>
+            <div class="product-card__name">Toalla Exfoliante en Caja</div>
+            <div class="product-card__detail">Caja Máster: 224 cajas · 1 toalla c/u</div>
             <a href="distribuidores.html" class="btn btn--orange btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
@@ -410,21 +726,43 @@
           <div class="product-card__img-wrap" style="background:#FFF3ED;">
             <div class="product-card__img-placeholder" style="color:var(--orange);">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
-              <span>TEX-3</span>
+              <span>TECZ-B</span>
             </div>
           </div>
           <div class="product-card__body">
-            <div class="product-card__code">Código: TEX-3</div>
-            <div class="product-card__name">Pack Trio</div>
-            <div class="product-card__detail">Presentación: 3 piezas · Caja máster: 24 pzas</div>
+            <div class="product-card__code">Código: TECZ-B</div>
+            <div class="product-card__name">Toalla Exfoliante en Bolsa</div>
+            <div class="product-card__detail">Caja Máster: 288 bolsas · 1 toalla c/u</div>
             <a href="distribuidores.html" class="btn btn--orange btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
           </div>
         </div>
-        <div class="product-card reveal reveal-delay-2" style="border:2px dashed rgba(255,107,26,.3);background:rgba(255,107,26,.03);justify-content:center;align-items:center;display:flex;flex-direction:column;padding:32px;text-align:center;">
-          <div style="font-size:2.5rem;margin-bottom:12px;">🎨</div>
-          <div style="font-weight:700;margin-bottom:8px;">Colores variados</div>
-          <p style="font-size:.85rem;margin-bottom:16px;">Disponible en múltiples colores para surtido variado.</p>
-          <a href="contacto.html" class="btn btn--sm" style="background:rgba(255,107,26,.1);color:var(--orange);border:1px solid rgba(255,107,26,.3);">Consultar</a>
+        <div class="product-card reveal reveal-delay-2">
+          <div class="product-card__img-wrap" style="background:#FFF3ED;">
+            <div class="product-card__img-placeholder" style="color:var(--orange);">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+              <span>TECZ-BEC</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">Código: TECZ-BEC</div>
+            <div class="product-card__name">Toalla Exfoliante Bolsa Especial</div>
+            <div class="product-card__detail">Caja Máster: 300 bolsas · 1 toalla c/u</div>
+            <a href="distribuidores.html" class="btn btn--orange btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
+          </div>
+        </div>
+        <div class="product-card reveal reveal-delay-3">
+          <div class="product-card__img-wrap" style="background:#FFF3ED;">
+            <div class="product-card__img-placeholder" style="color:var(--orange);">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+              <span>TECZ-BEL</span>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__code">Código: TECZ-BEL</div>
+            <div class="product-card__name">Toalla Exfoliante Bolsa Larga</div>
+            <div class="product-card__detail">Caja Máster: 288 bolsas · 1 toalla c/u</div>
+            <a href="distribuidores.html" class="btn btn--orange btn--sm" style="width:100%;justify-content:center;">Cotizar</a>
+          </div>
         </div>
       </div>
     </div>
@@ -495,5 +833,49 @@
   </a>
 
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var track = document.querySelector('.carousel-track');
+      if (!track) return;
+      var total = track.querySelectorAll('.carousel-slide').length;
+      var dots = document.querySelectorAll('.carousel-dot');
+      var current = 0, timer;
+
+      function goTo(idx) {
+        current = ((idx % total) + total) % total;
+        track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+      }
+
+      var prev = document.querySelector('.carousel-arrow--prev');
+      var next = document.querySelector('.carousel-arrow--next');
+      if (prev) prev.addEventListener('click', function() { goTo(current - 1); resetTimer(); });
+      if (next) next.addEventListener('click', function() { goTo(current + 1); resetTimer(); });
+      dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); resetTimer(); }); });
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(function() { goTo(current + 1); }, 5500);
+      }
+      resetTimer();
+
+      // Actualiza el tab activo al hacer scroll
+      var tabs = document.querySelectorAll('.product-tab');
+      if (tabs.length && 'IntersectionObserver' in window) {
+        var tabObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              var id = '#' + entry.target.id;
+              tabs.forEach(function(t) { t.classList.toggle('active', t.getAttribute('href') === id); });
+            }
+          });
+        }, { rootMargin: '-45% 0px -45% 0px' });
+        ['fibras', 'cotonetes', 'toallas'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) tabObs.observe(el);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

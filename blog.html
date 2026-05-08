@@ -302,16 +302,16 @@
     </div>
   </div>
 
-   HERO -->
+   <!-- HERO  -->
   <section class="blog-hero">
     <div class="container">
-      <nav class="breadcrumb">
-        <a href="index.html">Inicio</a>
-        <span class="breadcrumb__sep">/</span>
-        <span>Blog</span>
-      </nav>
-      <h1>Consejos para una cocina impecable</h1>
-      <p>Trucos, guías y tips de limpieza del hogar escritos por expertos. Porque una cocina limpia no es suerte — es saber cómo hacerlo.</p>
+      <h1>Blog Ziroba: Limpieza, Belleza y Sustentabilidad</h1>
+      <p>Guías, trucos y consejos sobre nuestros tres productos estrella: Fibra ZIROBA, Cotonetes de Bambú y Toalla Exfoliante Corporal. Porque vivir mejor empieza en casa.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;">
+        <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;font-size:.8rem;font-weight:600;padding:4px 14px;border-radius:100px;">🔩 Fibra ZIROBA</span>
+        <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;font-size:.8rem;font-weight:600;padding:4px 14px;border-radius:100px;">🌿 Cotonetes de Bambú</span>
+        <span style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;font-size:.8rem;font-weight:600;padding:4px 14px;border-radius:100px;">🛁 Toalla Exfoliante</span>
+      </div>
     </div>
   </section>
 
@@ -328,15 +328,15 @@
             <span class="section-label">Artículo destacado</span>
           </div>
           <a href="#" class="article-featured reveal" style="display:grid;text-decoration:none;">
-            <div class="article-featured__img">🍳</div>
+            <div class="article-featured__img" style="background:linear-gradient(135deg,#FFF0E8,#FF6B1A);">🛁</div>
             <div class="article-featured__body">
               <div class="article-featured__meta">
-                <span class="badge badge--teal">Limpieza</span>
-                <span class="article-card__date">15 de enero, 2025</span>
-                <span style="font-size:.78rem;color:var(--gray);">· 5 min de lectura</span>
+                <span class="badge badge--orange">Toalla Exfoliante</span>
+                <span class="article-card__date">10 de febrero, 2025</span>
+                <span style="font-size:.78rem;color:var(--gray);">· 6 min de lectura</span>
               </div>
-              <h2 class="article-featured__title">Cómo quitar grasa pegada de una olla exprés sin dañarla</h2>
-              <p class="article-featured__excerpt">La olla exprés es uno de los utensilios más usados en la cocina mexicana, pero también uno de los más difíciles de limpiar cuando la grasa se pega. Te enseñamos el truco infalible que usan las amas de casa expertas para dejarla como nueva en minutos.</p>
+              <h2 class="article-featured__title">Guía completa: cómo cuidar tu piel con la Toalla Exfoliante Corporal Ziroba</h2>
+              <p class="article-featured__excerpt">La toalla exfoliante no es solo un accesorio de baño — es una herramienta de cuidado personal. Te enseñamos la técnica correcta para exfoliar según tu tipo de piel, con qué frecuencia usarla y por qué los materiales de alta calidad Ziroba marcan la diferencia en los resultados.</p>
               <div style="display:flex;align-items:center;gap:10px;">
                 <span class="article-card__read">
                   Leer artículo completo
@@ -348,160 +348,161 @@
 
           <!-- FILTROS DE CATEGORÍA -->
           <div style="margin: 48px 0 32px;">
-            <h3 style="margin-bottom:16px;font-size:1rem;">Filtrar por categoría</h3>
+            <h3 style="margin-bottom:16px;font-size:1rem;">Filtrar por producto</h3>
             <div class="category-filters">
-              <button class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
-              <button class="filter-btn" onclick="filtrarCategoria('limpieza', this)">🧹 Limpieza del hogar</button>
-              <button class="filter-btn" onclick="filtrarCategoria('cocina', this)">🍳 Cocina</button>
-              <button class="filter-btn" onclick="filtrarCategoria('sustentabilidad', this)">🌿 Sustentabilidad</button>
-              <button class="filter-btn" onclick="filtrarCategoria('consejos', this)">💡 Consejos y trucos</button>
+              <button class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todos los artículos</button>
+              <button class="filter-btn" onclick="filtrarCategoria('fibras', this)">🔩 Fibra ZIROBA</button>
+              <button class="filter-btn" onclick="filtrarCategoria('cotonetes', this)">🌿 Cotonetes de Bambú</button>
+              <button class="filter-btn" onclick="filtrarCategoria('toallas', this)">🛁 Toalla Exfoliante</button>
             </div>
           </div>
 
           <!-- GRID DE ARTÍCULOS -->
           <div class="articles-grid" id="articles-grid">
 
-            <article class="article-card reveal" data-cat="cocina">
+            <!-- FIBRA ZIROBA -->
+            <article class="article-card reveal" data-cat="fibras">
               <div class="article-card__img" style="background:linear-gradient(135deg,#FFF3ED,#FF8C42);">🥩</div>
               <div class="article-card__body">
                 <div class="article-card__meta">
-                  <span class="badge badge--orange" style="font-size:.7rem;padding:3px 8px;">Cocina</span>
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Fibra ZIROBA</span>
                   <span class="article-card__date">8 de enero, 2025</span>
                 </div>
                 <h3 class="article-card__title">Cómo limpiar una parrilla después del asado sin esfuerzo</h3>
-                <p class="article-card__excerpt">El truco que usan los expertos para tener una parrilla brillante con menos esfuerzo. La grasa del asado no tiene por qué ser tu enemiga.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
+                <p class="article-card__excerpt">El truco que usan los expertos para tener una parrilla brillante. La grasa del asado no tiene por qué ser tu enemiga con la fibra correcta.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
 
-            <article class="article-card reveal reveal-delay-1" data-cat="sustentabilidad">
-              <div class="article-card__img" style="background:linear-gradient(135deg,#F0FFF4,#2ECC71);">🌿</div>
-              <div class="article-card__body">
-                <div class="article-card__meta">
-                  <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;font-size:.7rem;padding:3px 8px;">Sustentabilidad</span>
-                  <span class="article-card__date">2 de enero, 2025</span>
-                </div>
-                <h3 class="article-card__title">¿Por qué cambiar tus cotonetes de plástico por bambú?</h3>
-                <p class="article-card__excerpt">Descubre el impacto ambiental de hacer este pequeño cambio y cuáles son los beneficios para tu piel y el planeta.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-              </div>
-            </article>
-
-            <article class="article-card reveal reveal-delay-2" data-cat="consejos">
+            <article class="article-card reveal reveal-delay-1" data-cat="fibras">
               <div class="article-card__img" style="background:linear-gradient(135deg,var(--teal-pale),#80DEEA);">✨</div>
               <div class="article-card__body">
                 <div class="article-card__meta">
-                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Consejos</span>
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Fibra ZIROBA</span>
                   <span class="article-card__date">20 de diciembre, 2024</span>
                 </div>
                 <h3 class="article-card__title">5 errores que cometes al limpiar tus sartenes antiadherentes</h3>
                 <p class="article-card__excerpt">Los sartenes antiadherentes son delicados. Aprende qué fibras puedes usar, cuáles debes evitar y cómo alargar su vida útil.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
 
-            <article class="article-card reveal" data-cat="limpieza">
-              <div class="article-card__img" style="background:linear-gradient(135deg,#F5F7FA,#B0BEC5);">🚿</div>
-              <div class="article-card__body">
-                <div class="article-card__meta">
-                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Limpieza</span>
-                  <span class="article-card__date">10 de diciembre, 2024</span>
-                </div>
-                <h3 class="article-card__title">Cómo eliminar el sarro del baño con productos naturales</h3>
-                <p class="article-card__excerpt">El sarro es el enemigo número uno del baño. Te damos la receta casera más efectiva y la fibra correcta para dejarlo impecable.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-              </div>
-            </article>
-
-            <article class="article-card reveal reveal-delay-1" data-cat="cocina">
+            <article class="article-card reveal reveal-delay-2" data-cat="fibras">
               <div class="article-card__img" style="background:linear-gradient(135deg,#E8F7F9,#0095A8);">🫕</div>
               <div class="article-card__body">
                 <div class="article-card__meta">
-                  <span class="badge badge--orange" style="font-size:.7rem;padding:3px 8px;">Cocina</span>
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Fibra ZIROBA</span>
                   <span class="article-card__date">1 de diciembre, 2024</span>
                 </div>
                 <h3 class="article-card__title">El secreto para limpiar el comal sin rayarlo</h3>
-                <p class="article-card__excerpt">El comal acumula residuos de tortillas, chile y grasa que se carboniza. Esta es la técnica para dejarlo listo para el siguiente uso.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
+                <p class="article-card__excerpt">El comal acumula residuos de tortillas, chile y grasa carbonizada. Esta es la técnica correcta con la fibra de acero para dejarlo listo en minutos.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
 
-            <article class="article-card reveal reveal-delay-2" data-cat="consejos">
+            <article class="article-card reveal" data-cat="fibras">
               <div class="article-card__img" style="background:linear-gradient(135deg,#FFF3ED,#FFAB76);">🧽</div>
               <div class="article-card__body">
                 <div class="article-card__meta">
-                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Consejos</span>
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Fibra ZIROBA</span>
                   <span class="article-card__date">18 de noviembre, 2024</span>
                 </div>
                 <h3 class="article-card__title">Fibra de acero vs. fibra de plástico: ¿cuál limpia mejor?</h3>
                 <p class="article-card__excerpt">Una comparación honesta entre los dos tipos de fibras más populares. Cuándo usar cada una y por qué el acero inoxidable gana en casi todo.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
 
-            <article class="article-card reveal" data-cat="sustentabilidad">
-              <div class="article-card__img" style="background:linear-gradient(135deg,#E8F5E9,#66BB6A);">♻️</div>
-              <div class="article-card__body">
-                <div class="article-card__meta">
-                  <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;font-size:.7rem;padding:3px 8px;">Sustentabilidad</span>
-                  <span class="article-card__date">5 de noviembre, 2024</span>
-                </div>
-                <h3 class="article-card__title">10 hábitos de limpieza sustentables que puedes adoptar hoy</h3>
-                <p class="article-card__excerpt">Pequeños cambios en tu rutina de limpieza que marcan una gran diferencia para el medio ambiente. Sin sacrificar efectividad.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-              </div>
-            </article>
-
-            <article class="article-card reveal reveal-delay-1" data-cat="limpieza">
-              <div class="article-card__img" style="background:linear-gradient(135deg,#F3E5F5,#AB47BC);">🏠</div>
-              <div class="article-card__body">
-                <div class="article-card__meta">
-                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Limpieza</span>
-                  <span class="article-card__date">22 de octubre, 2024</span>
-                </div>
-                <h3 class="article-card__title">Rutina de limpieza semanal para cocinas de restaurante</h3>
-                <p class="article-card__excerpt">Los profesionales de la hostelería siguen protocolos estrictos. Aquí te compartimos la rutina que usan y cómo adaptarla al hogar.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-              </div>
-            </article>
-
-            <article class="article-card reveal reveal-delay-2" data-cat="consejos">
+            <article class="article-card reveal reveal-delay-1" data-cat="fibras">
               <div class="article-card__img" style="background:linear-gradient(135deg,#E8F7F9,#26C6DA);">🔬</div>
               <div class="article-card__body">
                 <div class="article-card__meta">
-                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Consejos</span>
+                  <span class="badge badge--teal" style="font-size:.7rem;padding:3px 8px;">Fibra ZIROBA</span>
                   <span class="article-card__date">8 de octubre, 2024</span>
                 </div>
                 <h3 class="article-card__title">¿Con qué frecuencia debes cambiar tu fibra de cocina?</h3>
-                <p class="article-card__excerpt">Una fibra vieja es un foco de bacterias. Te explicamos cada cuánto cambiarla, cómo cuidarla y por qué el acero inoxidable dura más.</p>
-                <a href="#" class="article-card__read">
-                  Leer más
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
+                <p class="article-card__excerpt">Una fibra vieja es un foco de bacterias. Te explicamos cada cuánto cambiarla, cómo cuidarla y por qué el acero inoxidable Ziroba dura más que el resto.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              </div>
+            </article>
+
+            <!-- COTONETES DE BAMBÚ -->
+            <article class="article-card reveal reveal-delay-2" data-cat="cotonetes">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#F0FFF4,#2ECC71);">🌿</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;font-size:.7rem;padding:3px 8px;">Cotonetes</span>
+                  <span class="article-card__date">2 de enero, 2025</span>
+                </div>
+                <h3 class="article-card__title">¿Por qué cambiar tus cotonetes de plástico por bambú?</h3>
+                <p class="article-card__excerpt">Descubre el impacto ambiental de hacer este pequeño cambio y cuáles son los beneficios para tu piel, tu familia y el planeta.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card reveal" data-cat="cotonetes">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#E8F5E9,#66BB6A);">♻️</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;font-size:.7rem;padding:3px 8px;">Cotonetes</span>
+                  <span class="article-card__date">5 de noviembre, 2024</span>
+                </div>
+                <h3 class="article-card__title">10 usos de los cotonetes de bambú que probablemente no conocías</h3>
+                <p class="article-card__excerpt">Más allá del oído: maquillaje, limpieza de electrónicos, cuidado de bebés, arreglos de uñas y mucho más. El cotonete de bambú Ziroba es el aliado más versátil del hogar.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card reveal reveal-delay-1" data-cat="cotonetes">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#F0FFF4,#A5D6A7);">👶</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge" style="background:rgba(46,204,113,.1);color:#27ae60;font-size:.7rem;padding:3px 8px;">Cotonetes</span>
+                  <span class="article-card__date">20 de enero, 2025</span>
+                </div>
+                <h3 class="article-card__title">Bebés y cotonetes de bambú: la opción más segura y natural</h3>
+                <p class="article-card__excerpt">El algodón 100% suave y el mango de bambú libre de toxinas hacen de los cotonetes Ziroba la elección perfecta para el cuidado más delicado: el de tus bebés.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              </div>
+            </article>
+
+            <!-- TOALLA EXFOLIANTE -->
+            <article class="article-card reveal reveal-delay-2" data-cat="toallas">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#FFF0E8,#FF6B1A);">🛁</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--orange" style="font-size:.7rem;padding:3px 8px;">Toalla Exfoliante</span>
+                  <span class="article-card__date">10 de febrero, 2025</span>
+                </div>
+                <h3 class="article-card__title">Cómo usar la Toalla Exfoliante Corporal Ziroba paso a paso</h3>
+                <p class="article-card__excerpt">Guía completa para sacarle el máximo provecho a tu toalla exfoliante. Técnica, frecuencia de uso y cómo adaptarla a cada tipo de piel para obtener resultados visibles desde la primera sesión.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card reveal" data-cat="toallas">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#FFF3ED,#FFCC99);">🧖</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--orange" style="font-size:.7rem;padding:3px 8px;">Toalla Exfoliante</span>
+                  <span class="article-card__date">28 de enero, 2025</span>
+                </div>
+                <h3 class="article-card__title">Beneficios de la exfoliación corporal regular para tu piel</h3>
+                <p class="article-card__excerpt">Eliminar células muertas no es solo estético. Descubre cómo la exfoliación semanal mejora la circulación, potencia la hidratación y da a tu piel un aspecto más luminoso y joven.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card reveal reveal-delay-1" data-cat="toallas">
+              <div class="article-card__img" style="background:linear-gradient(135deg,#FFF8F0,#E8840A);">🆚</div>
+              <div class="article-card__body">
+                <div class="article-card__meta">
+                  <span class="badge badge--orange" style="font-size:.7rem;padding:3px 8px;">Toalla Exfoliante</span>
+                  <span class="article-card__date">15 de enero, 2025</span>
+                </div>
+                <h3 class="article-card__title">Toalla exfoliante vs. esponja de baño: ¿cuál cuida mejor tu piel?</h3>
+                <p class="article-card__excerpt">Comparativa honesta entre los dos productos de baño más populares. Descubre cuál es más efectiva para la exfoliación, cuál dura más y por qué la Toalla Ziroba es la elección de quienes cuidan su piel.</p>
+                <a href="#" class="article-card__read">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               </div>
             </article>
 
@@ -591,12 +592,14 @@
             </div>
           </div>
 
-          <!-- CTA producto -->
-          <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal));border-radius:var(--radius);padding:28px;color:white;text-align:center;">
-            <div style="font-size:2.5rem;margin-bottom:12px;">🔩</div>
-            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;margin-bottom:8px;">Fibras Ziroba</div>
-            <p style="color:rgba(255,255,255,.85);font-size:.85rem;margin-bottom:16px;">La herramienta de limpieza que usan los distribuidores más exigentes de México.</p>
-            <a href="productos.html" class="btn btn--orange btn--sm" style="width:100%;justify-content:center;">Ver productos</a>
+          <!-- CTA productos -->
+          <div style="background:linear-gradient(135deg,var(--navy),#2D2D5E);border-radius:var(--radius);padding:28px;color:white;text-align:center;">
+            <div style="font-size:1.5rem;margin-bottom:10px;display:flex;justify-content:center;gap:6px;">🔩🌿🛁</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;margin-bottom:8px;">Línea completa Ziroba</div>
+            <p style="color:rgba(255,255,255,.8);font-size:.82rem;margin-bottom:16px;">Fibras de acero, cotonetes de bambú y toalla exfoliante. Calidad 100% mexicana.</p>
+            <a href="productos.html#fibras" class="btn btn--sm" style="width:100%;justify-content:center;background:var(--teal);color:white;margin-bottom:6px;">🔩 Fibra ZIROBA</a>
+            <a href="productos.html#cotonetes" class="btn btn--sm" style="width:100%;justify-content:center;background:#27ae60;color:white;margin-bottom:6px;">🌿 Cotonetes</a>
+            <a href="productos.html#toallas" class="btn btn--sm" style="width:100%;justify-content:center;background:var(--orange);color:white;">🛁 Toalla Exfoliante</a>
           </div>
 
         </aside>
